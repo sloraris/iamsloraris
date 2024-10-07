@@ -4,75 +4,84 @@ import HorizontalCard from "../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../lib/createSlug"
 
-const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+// get all posts in order of pubDate
+const posts = (await getCollection("docs")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const last_posts = posts.slice(0, 3);
+// filter posts by tag and get the last 3
+const filterPostsByTag = (posts, tag, exclude = false) => {
+  return posts.filter(post => {
+    const hasTags = post.data.tags && Array.isArray(post.data.tags);
+    if (exclude) {
+      return !hasTags || !post.data.tags.includes(tag);
+    }
+    return hasTags && post.data.tags.includes(tag);
+  });
+};
+const projectPosts = filterPostsByTag(posts, "ongoing").slice(0, 3);
+
+// get the last 3 posted docs that don't have the "ongoing" tag
+const lastPosts = filterPostsByTag(posts, "ongoing", true).slice(0, 3);
 ---
 
-<BaseLayout sideBarActiveItemID="home">
-  <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Manuel Ernesto</div>
-    <div class="text-3xl py-3 font-bold">Software Engineer and Entrepreneur</div>
-    <div class="py-2">
-      <text class="text-lg">
-        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
-        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
-        it useful!
-      </text>
+<BaseLayout img="/images/sloraris-banner.jpg" sideBarActiveItemID="home">
+  <div class="hero light-ring flex flex-col justify-center rounded-xl pb-8 relative overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="/hero/cosmic.jpg" alt="Background" class="w-full h-full object-cover filter blur-sm" />
+      <div class="absolute inset-0 bg-black opacity-50"></div>
     </div>
-    <div class="mt-8">
-      <a class="btn" href="https://twitter.com/manuelernestog" target="_blank"> Let's connect!</a>
-      <a href="https://github.com/manuelernestog/astrofy" target="_blank" class="btn btn-outline ml-5">
-        Get This template
+    <div class="hero-content text-center relative z-10">
+      <div class="max-w-md">
+        <h1 class="text-5xl font-bold">Hello there</h1>
+        <h2 class="text-3xl font-bold">I'm <span class="text-primary">Parker Owings</span></h2>
+        <h3 class="text-xl">aka <span class="text-primary">sloraris</span></h3>
+        <p class="py-6">
+          This site is a collection of my networking, automation, homelab, and tech experiments. If you're here from my resume, feel free to skip the tour and head straight to my recent projects or check out the CV page for an exhaustive list of my skills and experience.
+        </p>
+      </div>
+    </div>
+    <div class="index-buttons flex flex-row flex-wrap justify-center gap-4 relative z-10">
+      <a href="/projects" class="btn btn-accent btn-wide">
+        View All Projects
+      </a>
+      <a href="/cv" class="btn btn-outline btn-primary btn-wide">
+        View My CV
       </a>
     </div>
   </div>
 
   <div>
-    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
+    <div class="text-3xl w-full font-bold mb-4 mt-10">PROJECTS - Ongoing Shenanigans</div>
   </div>
 
-  <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
-  />
+  <div class="grid grid-cols-1 gap-4">
+  {
+    projectPosts.map((post) => (
+    <HorizontalCard
+      title={post.data.title}
+      img={post.data.heroImage}
+      desc={post.data.description}
+      url={"/docs/" + createSlug(post.data.title, post.slug)}
+      badge={post.data.badge}
+      />
+      ))}
+  </div>
 
   <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
+    <div class="text-3xl w-full font-bold mb-4 mt-10">DOCS - Hot off the CPU</div>
   </div>
 
-  {
-    last_posts.map((post) => (
-      <>
+  <div class="grid grid-cols-1 gap-4">
+    {
+      lastPosts.map((post) => (
         <HorizontalCard
           title={post.data.title}
           img={post.data.heroImage}
           desc={post.data.description}
-          url={"/blog/" + createSlug(post.data.title, post.slug)}
+          url={"/docs/" + createSlug(post.data.title, post.slug)}
           target="_self"
           badge={post.data.badge}
         />
-        <div class="divider my-0" />
-      </>
-    ))
-  }
+      ))
+    }
+  </div>
 </BaseLayout>

@@ -1,0 +1,25 @@
+/* Small/Normal Card Hover */
+.card:hover {
+    --pulse-color: oklch(var(--a));
+    animation: breathe 4s ease infinite;
+}
+
+/* Horizontal Card Hover */
+.horizontal-card:hover {
+    --pulse-color: oklch(var(--p));
+    animation: breathe 4s ease infinite;
+}
+
+
+@keyframes breathe {
+    0%, 100% {
+        box-shadow:
+            0 0 15px 0 var(--pulse-color),
+            0 0 15px 0 oklch(var(--s));
+    }
+    50% {
+        box-shadow:
+            0 0 0px 0 var(--pulse-color),
+            0 0 0px 0 oklch(var(--s));
+    }
+}

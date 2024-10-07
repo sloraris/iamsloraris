@@ -1,51 +1,66 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import CompactCard from "../components/CompactCard.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
+import { getCollection } from "astro:content";
+import createSlug from "../lib/createSlug"
+
+// get all posts in order of pubDate
+const posts = (await getCollection("docs"));
+
+// filter posts by tag and get the last 3
+const filterPostsByTag = (posts, tag) => {
+  return posts.filter(post => post.data.tags && post.data.tags.includes(tag));
+};
+const projectPosts = filterPostsByTag(posts, "project");
 ---
 
 <BaseLayout title = "Projects" sideBarActiveItemID="projects">
   <div>
-    <div class="text-3xl w-full font-bold mb-5">Projects Header</div>
+    <div class="text-3xl w-full font-bold mb-5">Never-Ending Projects</div>
   </div>
 
-  <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
+  <div class="flex grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-6">
+    <CompactCard
+      title="ORBIT"
+      img="/hero/orbit.jpg"
+      desc="Throwback to when I thought this was going to be a couple docker containers and a vlan..."
+      url="/projects/orbit"
+      target="_self"
+      badge="Homelab"
+    />
+    <CompactCard
+      title="AURORA"
+      img="/hero/aurora.jpg"
+      desc="Maybe someday SSDs will be cheap enough that I can actually afford to use this."
+      url="#"
+      target="_self"
+      badge="NAS"
+    />
+    <CompactCard
+      title="APOLLO"
+      img="/hero/apollo.jpg"
+      desc="Because Docker compose is magnificent, and my NUCs needed something to do."
+      url="/docs/docker-swarm"
+      target="_self"
+      badge="Cluster"
+    />
+  </div>
 
   <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Projects Header</div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">Other Projects</div>
   </div>
 
-  <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 4"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 5"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
+  <div class="flex grid grid-cols-1 gap-6">
+    {
+      projectPosts.map((post) => (
+      <HorizontalCard
+        title={post.data.title}
+        img={post.data.heroImage}
+        desc={post.data.description}
+        url={"/docs/" + createSlug(post.data.title, post.slug)}
+        badge={post.data.badge}
+        />
+        ))}
+  </div>
 </BaseLayout>

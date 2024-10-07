@@ -18,18 +18,18 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" data-theme="lofi">
+<html lang="en" data-theme="sloraris">
   <head>
     <BaseHead title={title} description={description} image={image} , ogType={ogType} />
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>
-    <div class="bg-base-100 drawer lg:drawer-open">
+    <div class="bg-base-300 drawer lg:drawer-open">
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content bg-base-100">
+      <div class="drawer-content bg-base-300">
         <Header title={SITE_TITLE} />
         <div class="md:flex md:justify-center">
-          <main class="p-6 pt-10 lg:max-w-[900px] max-w-[100vw]">
+          <main class="p-6 pt-10 lg:max-w-[1050px] max-w-[100vw]">
             <slot />
           </main>
         </div>

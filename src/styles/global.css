@@ -1,3 +1,17 @@
+/* Import Custom CSS */
+@import "./gradient.css";
+@import "./cards.css";
+@import "./hero.css";
 .time-line-container>div:last-child .education__time>.education__line {
     display: none;
+}
+
+/* Fonts */
+h1, h2, h3, h4, h5, h6, a {
+    font-family: 'Exo 2', sans-serif;
+}
+
+/* Index Page Button Hover */
+.index-buttons a:hover {
+    scale: 102%;
 }

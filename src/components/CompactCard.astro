@@ -1,0 +1,37 @@
+---
+const { title, img, desc, url, badge, tags, target = "_blank" } = Astro.props;
+import { Image } from "astro:assets";
+const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
+---
+
+<div class="card card-compact bg-base-100 shadow-xl hover:shadow-2xl transition ease-in-out hover:scale-[102%]">
+  <a href={url} target={target}>
+    {img && (
+      <figure class="rounded-t-2xl overflow-hidden">
+        <Image
+          src={img}
+          width={750}
+          height={422}
+          format="webp"
+          alt={title}
+          class="w-full"
+        />
+      </figure>
+    )}
+    <div class="card-body">
+      <h2 class="card-title">
+        {title}
+        {badge && <div class="badge badge-secondary">{badge}</div>}
+      </h2>
+      <p>{desc}</p>
+      <div class="card-actions justify-end">
+        {tags &&
+          tags.map((tag) => (
+            <a href={`${tag_url}/${tag}`} class="badge badge-outline">
+              {tag}
+            </a>
+          ))}
+      </div>
+    </div>
+  </a>
+</div>
