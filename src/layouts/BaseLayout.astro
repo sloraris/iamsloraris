@@ -23,6 +23,15 @@ const {
     <BaseHead title={title} description={description} image={image} , ogType={ogType} />
     {TRANSITION_API && <ViewTransitions />}
   </head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XG9ZTYKXTB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XG9ZTYKXTB');
+  </script>
   <body>
     <div class="bg-base-300 drawer lg:drawer-open">
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
