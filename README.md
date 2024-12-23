@@ -1,6 +1,6 @@
 # sloraris.dev
 
-This is the source code for my personal website, [sloraris.dev](https://sloraris.dev). It's a static site built with Astro, with some custom components and a custom backend for managing the projects and blog posts.
+This is the source code for my personal website, [sloraris.dev](https://sloraris.dev). It's a static site with some custom components and a custom backend for managing the projects and blog posts.
 
 ## Development
 

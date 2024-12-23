@@ -3,6 +3,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
+import NavBar from "../components/NavBar.astro";
 import { ViewTransitions } from "astro:transitions";
 
 import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../config";
@@ -50,7 +51,7 @@ const {
       <div class="drawer-content bg-base-300">
         <Header title={SITE_TITLE} />
         <div class="md:flex md:justify-center">
-          <main class="p-6 pt-10 lg:max-w-[1050px] max-w-[100vw]">
+          <main class="p-6 pt-10 lg:max-w-[1050px] min-w-[350px] max-w-[100vw]">
             <slot />
           </main>
         </div>

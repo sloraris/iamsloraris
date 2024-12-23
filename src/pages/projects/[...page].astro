@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HorizontalCard from "../../components/HorizontalCard.astro";
+import CompactCard from "../../components/CompactCard.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../../lib/createSlug"
 
 export async function getStaticPaths({ paginate }) {
-  const posts = await getCollection("docs");
+  const posts = await getCollection("projects");
   posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   return paginate(posts, { pageSize: 10 });
 }
@@ -13,28 +14,58 @@ export async function getStaticPaths({ paginate }) {
 const { page } = Astro.props;
 ---
 
-<BaseLayout title="Docs" sideBarActiveItemID="docs">
-  <div class="light-ring mb-8 mockup-browser bg-base-300 border">
-    <div class="mockup-browser-toolbar">
-      <div class="input">https://interweb-searcher.site</div>
-    </div>
+<BaseLayout title="Projects" sideBarActiveItemID="projects">
+  <div class="mb-10 mockup-window bg-base-300 border">
     <div class="bg-base-200 flex flex-col justify-center px-4 py-16">
-      <h1 class="text-center text-5xl font-bold mb-4">Docs</h1>
+      <h1 class="text-center text-5xl font-bold mb-4">Projects</h1>
       <p class="text-center text-xl">
-        Ever spent hours searching for a super niche answer to a really obscure question just to end up searching for it again 2 months later when that thing doing the stuff breaks, again?
-      </p>
-      <br>
-      <p class="text-center text-xl">
-        Yeah, me too. That's the real reason this site exists.
+        Basically just show and tell.
       </p>
     </div>
+  </div>
+
+  <div>
+    <h2 class="text-3xl w-full font-bold mb-5">Never-Ending Projects</h2>
+  </div>
+
+  <div class="flex grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mb-4 gap-6">
+    <CompactCard
+      title=""
+      img="/hero/orbit.jpg"
+      desc="Throwback to when I thought this was going to be a couple docker containers and a vlan..."
+      url="/projects/tag/orbit"
+      target="_self"
+      badge="Homelab"
+    />
+    <CompactCard
+      title=""
+      img="/hero/aurora.jpg"
+      desc="Maybe someday SSDs will be cheap enough that I can actually afford to use this."
+      url="/projects/tag/aurora"
+      target="_self"
+      badge="NAS"
+    />
+    <CompactCard
+      title=""
+      img="/hero/apollo.jpg"
+      desc="Highly Availabile services, baby. I absolutely don't need it, but I'm building it anyway."
+      url="/projects/tag/apollo"
+      target="_self"
+      badge="Cluster"
+    />
+  </div>
+
+  <hr class="slo-hr" />
+
+  <div>
+    <h2 class="text-3xl w-full font-bold mb-5">Other Recent Projects</h2>
   </div>
 
   {
     page.data.length === 0 ? (
       <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
         <p class="font-bold">Sorry!</p>
-        <p>There are no docs to show at the moment. Check back later!</p>
+        <p>There are no posts to show at the moment. Check back later!</p>
       </div>
     ) : (
       <ul>
@@ -44,7 +75,7 @@ const { page } = Astro.props;
               title={post.data.title}
               img={post.data.heroImage}
               desc={post.data.description}
-              url={"/docs/" + createSlug(post.data.title, post.slug)}
+              url={"/projects/" + createSlug(post.data.title, post.slug)}
               target="_self"
               badge={post.data.badge}
               tags={post.data.tags}

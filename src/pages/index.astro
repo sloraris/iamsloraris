@@ -5,7 +5,7 @@ import { getCollection } from "astro:content";
 import createSlug from "../lib/createSlug"
 
 // get all posts in order of pubDate
-const posts = (await getCollection("docs")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = (await getCollection("projects")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 // filter posts by tag and get the last 3
 const filterPostsByTag = (posts, tag, exclude = false) => {
@@ -19,7 +19,7 @@ const filterPostsByTag = (posts, tag, exclude = false) => {
 };
 const projectPosts = filterPostsByTag(posts, "ongoing").slice(0, 3);
 
-// get the last 3 posted docs that don't have the "ongoing" tag
+// get the last 3 posts that don't have the "ongoing" tag
 const lastPosts = filterPostsByTag(posts, "ongoing", true).slice(0, 3);
 ---
 
@@ -30,27 +30,27 @@ const lastPosts = filterPostsByTag(posts, "ongoing", true).slice(0, 3);
       <div class="absolute inset-0 bg-black opacity-50"></div>
     </div>
     <div class="hero-content text-center relative z-10">
-      <div class="max-w-md">
+      <div class="max-w-lg">
         <h1 class="text-5xl font-bold">Hello there</h1>
-        <h2 class="text-3xl font-bold">I'm <span class="text-primary">Parker Owings</span></h2>
+        <h2 class="text-3xl font-bold">I'm <span class="text-accent">Parker Owings</span></h2>
         <h3 class="text-xl">aka <span class="text-primary">sloraris</span></h3>
-        <p class="py-6">
-          This site is a collection of my networking, automation, homelab, and tech experiments. If you're here from my resume, feel free to skip the tour and head straight to my recent projects or check out the CV page for an exhaustive list of my skills and experience.
+        <p class="">
+          This site is a collection of my self-taught skills, tech experiments, and experiences.
         </p>
       </div>
     </div>
     <div class="index-buttons flex flex-row flex-wrap justify-center gap-4 relative z-10">
       <a href="/projects" class="btn btn-accent btn-wide">
-        View All Projects
+        View Projects
       </a>
-      <a href="/cv" class="btn btn-outline btn-primary btn-wide">
-        View My CV
+      <a href="/about" class="btn btn-outline btn-primary btn-wide">
+        About Me
       </a>
     </div>
   </div>
 
   <div>
-    <div class="text-3xl w-full font-bold mb-4 mt-10">PROJECTS - Ongoing Shenanigans</div>
+    <h2 class="text-3xl w-full font-bold mb-4 mt-10">Ongoing Shenanigans</h2>
   </div>
 
   <div class="grid grid-cols-1 gap-4">
@@ -60,14 +60,14 @@ const lastPosts = filterPostsByTag(posts, "ongoing", true).slice(0, 3);
       title={post.data.title}
       img={post.data.heroImage}
       desc={post.data.description}
-      url={"/docs/" + createSlug(post.data.title, post.slug)}
+      url={"/projects/" + createSlug(post.data.title, post.slug)}
       badge={post.data.badge}
       />
       ))}
   </div>
 
   <div>
-    <div class="text-3xl w-full font-bold mb-4 mt-10">DOCS - Hot off the CPU</div>
+    <h2 class="text-3xl w-full font-bold mb-4 mt-10">Hot off the CPU</h2>
   </div>
 
   <div class="grid grid-cols-1 gap-4">
@@ -77,7 +77,7 @@ const lastPosts = filterPostsByTag(posts, "ongoing", true).slice(0, 3);
           title={post.data.title}
           img={post.data.heroImage}
           desc={post.data.description}
-          url={"/docs/" + createSlug(post.data.title, post.slug)}
+          url={"/projects/" + createSlug(post.data.title, post.slug)}
           target="_self"
           badge={post.data.badge}
         />
