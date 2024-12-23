@@ -1,79 +1,27 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import CVTimeLineElement from "../components/cv/CVTimeLine.astro";
+import CVEvents from "../components/cv/events.astro";
 import SkillBar from "../components/skill/SkillBar.astro";
 import SkillScale from "../components/skill/SkillScale.astro";
-const skills = [
-  { name: "Ansible", icon: "ansible", level: 2},
-  { name: "CI/CD", icon: "cicd", level: 1},
-  { name: "Docker", icon: "docker", level: 3},
-  { name: "K8s", icon: "kubernetes", level: 1},
-  { name: "Linux", icon: "ubuntu", level: 3},
-  { name: "Networking", icon: "unifi", level: 3},
-  { name: "Python", icon: "python", level: 3},
-  { name: "Security", icon: "security", level: 2},
-  { name: "Terraform", icon: "terraform", level: 2},
-  { name: "Windows", icon: "windows", level: 3}
-]
-
-const CV_images = [
-  { src: "/images/cv/frc1.jpg", alt: "at FRC 2017" },
-  { src: "/images/cv/frc2.jpg", alt: "FRC 2017 robot hobbes"},
-  { src: "/images/cv/bct.jpg", alt: "Basic Combat Training" },
-  { src: "/images/cv/ait.jpg", alt: "Advanced Individual Training" },
-  { src: "/images/cv/osf.jpg", alt: "Oakland/San Francisco Mission"},
-  { src: "/images/cv/heli-tail.jpg", alt: "Helicopter Tail" },
-]
+import { skills } from "../components/skill/skills.ts";
 ---
 
 <BaseLayout title="CV" sideBarActiveItemID="cv">
-
-  <div class=" mb-3 collapse collapse-plus bg-base-200">
-    <input type="radio" name="details" checked="checked" />
-    <h2 class="collapse-title text-3xl font-bold">Bio</h2>
-    <div class="collapse-content">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="avatar col-span-1">
-          <div class="rounded-xl">
-            <img src="/images/parker-owings.jpeg" />
-          </div>
-        </div>
-        <div class="col-span-2 flex flex-col gap-2 bg-base-100 p-4 rounded-xl">
-          <h3 class="text-3xl font-bold"><span class="text-accent">Parker Owings</span> aka <span class="text-accent">sloraris</span></h2>
-          <p>I would describe myself as a man of many interests&mdash;some interesting, some not. When I'm not pushing to main, (which is never because I don't work for Crowdstrike) I'm usually cable managing my homelab, riding my onewheel, or dabbling with redstone and trying to evade creepers. I have a passion for networking, automation, and cybersecurity. I'm a firm believer in the philosophy that you should always be learning, mostly by doing, and I'm always looking for new opportunities to do so. I've had quite the journey to get where I am today, and I'm excited to see where the next chapter takes me.</p>
-        </div>
-      </div>
+  <div class="mb-10 mockup-window bg-base-300 border">
+    <div class="bg-base-200 flex flex-col justify-center px-4 py-16">
+      <h1 class="text-center text-5xl font-bold mb-4">CV</h1>
+      <p class="text-center text-xl">
+        My resume and LinkedIn, stylized.
+      </p>
     </div>
   </div>
 
   <div class="mb-3 collapse collapse-plus bg-base-200">
-    <input type="radio" name="details"/>
-    <h2 class="collapse-title text-3xl font-bold">Certifications</h2>
-    <div class="collapse-content">
-      <h3 class="text-2xl font-bold">Certified</h3>
-      <ul class="list-disc mx-6 mb-4 grid gap-2">
-        <li>
-          <a href="#" target="_blank"> Part 107 (Remote Pilot)</a>
-        </li>
-      </ul>
-      <h3 class="text-2xl font-bold">Studying</h3>
-      <ul class="list-disc mx-6 mb-4 grid gap-2">
-        <li>
-          <a href="#" target="_blank"> CCNA (Currently studying for the first exam)</a>
-        </li>
-        <li>
-          <a href="#" target="_blank"> Splunk (Currently studying for the SOA exam)</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="mb-5 collapse collapse-plus bg-base-200">
-    <input type="radio" name="details" id="skills-accordion" />
+    <input type="checkbox" />
     <h2 class="collapse-title text-3xl font-bold">Skills</h2>
     <div class="collapse-content">
       <p class="rounded-xl bg-base-100 mb-4 p-3">
-        These skills are rated on a scale of 0-4. A score of 0 means I've heard of it and can tell you about it but haven't spent any time with it, while a score of 4 means I use it consistently and would feel comfortable recommending it to others or teaching them how to use it.
+        These skills are self-rated on a scale of 0-4. A score of 0 means I've heard of it and can tell you about it but haven't spent any time with it, while a score of 4 means I use it consistently and would feel comfortable recommending it to others or teaching them how to use it.
       </p>
       <div class="flex">
         <SkillScale />
@@ -81,104 +29,44 @@ const CV_images = [
       <div class="space-y-4">
         {skills.map(skill => (
           <div class="flex items-center">
-              <SkillBar name={skill.name} icon={skill.icon} level={skill.level} />
+            <SkillBar name={skill.name} icon={skill.icon} level={skill.level} />
           </div>
         ))}
       </div>
     </div>
   </div>
 
-  <hr class="my-10 border-primary" />
+  <div class="mb-3 collapse collapse-plus bg-base-200">
+    <input type="checkbox" />
+    <h2 class="collapse-title text-3xl font-bold">Certifications</h2>
+    <div class="collapse-content">
+      <div class="rounded-xl bg-base-100 p-3">
+        <h3 class="text-2xl font-bold">Certified</h3>
+        <ul class="list-disc mx-6 mb-4 grid gap-2">
+          <li>
+            <a href="#" target="_blank"> Part 107 (Remote Pilot)</a>
+          </li>
+        </ul>
+        <h3 class="text-2xl font-bold">Studying</h3>
+        <ul class="list-disc mx-6 mb-4 grid gap-2">
+          <li>
+            <a href="#" target="_blank"> CCNA (Currently studying for the first exam)</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="slo-hr" />
 
   <div class="mb-5">
     <h2 class="text-3xl text-center w-full font-bold">Timeline</h2>
   </div>
-  <div class="timeline timeline-vertical mb-10">
-    <CVTimeLineElement
-      date="Sep 2021 - May 2025"
-      title="B.S. Information Systems"
-      org="Utah State University"
-      location="Logan, UT"
-      start={true}
-      checked={false}
-      botFilled={false}
-    >
-    </CVTimeLineElement>
-    <CVTimeLineElement
-      date="Mar 2019 - Present"
-      title="Aircraft Electrician (15F)"
-      org="Idaho Army National Guard"
-      location="Boise, ID"
-      topFilled={false}
-      reversed={true}
-      checked={false}
-    >
-      I grew up fascinated by helicopters. My time in the Idaho Army National Guard allowed me to learn how they function and participate in their maintenance. I met some amazing people and learned a lot about working in a team environment, leading and training new soldiers, and the importance of attention to detail.
-      <img src="/images/cv/heli-tail.jpg" alt="Helicopter Tail" class="w-full mt-3 rounded-xl" />
-    </CVTimeLineElement>
-    <CVTimeLineElement
-      date="Apr 2024 - Present"
-      title="IT Website Support Technician"
-      org="Utah State University"
-      location="Logan, UT"
-    >
-      I learned firsthand how to build and maintain a website while working for the USU IT Web Team. Decisions on how to style and format pages while balancing client needs, technical constraints, and website best practices were challenging but rewarding.
-    </CVTimeLineElement>
-    <CVTimeLineElement
-      date="Sep 2023 - Apr 2024"
-      title="IT Security Technician"
-      org="Utah State University"
-      location="Logan, UT"
-      reversed={true}
-    >
-      Working for the IT Security team at Utah State University introduced me to the world of cybersecurity. I got to use tools like NMAP, Nessus, SentinelOne, Abnormal, and others to check the security of various systems and networks. I also got to learn about different types of attacks and how to defend against them. I learned a lot about network security, system hardening, and incident response.
-    </CVTimeLineElement>
-    <CVTimeLineElement
-      date="May 2019 - Apr 2021"
-      title="LDS Missionary"
-      org="The Church of Jesus Christ of Latter-Day Saints"
-      location="Oakland/San Francisco, CA"
-    >
-      I spent 2 years in the California Oakland Mission speaking English. My time was spent serving others and teaching people about Jesus Christ. It was a challenging but rewarding experience that taught me a lot about the importance of faith, hope, and charity. It also taught me a lot about communication and how to communicate with people from all walks of life, as well as patience during times of trouble (like COVID-19).
-      <img src="/images/cv/osf.jpg" alt="Oakland/San Francisco Mission" class="w-full mt-3 rounded-xl" />
-    </CVTimeLineElement>
-    <CVTimeLineElement
-      date="Nov 2017 - Apr 2018"
-      title="Aircraft Electrician (15F)"
-      org="Minnesota Army National Guard"
-      location="St. Paul, MN"
-      reversed={true}
-    />
-    <CVTimeLineElement
-      date="Nov 2017 - Apr 2018"
-      title="Advanced Individual Training"
-      org="Army National Guard"
-      location="Fort Eustis, VA"
-    >
-      This is where my interest in electricity began. I spent 6 months learning about the theory and physics of how electricity works and how to troubleshoot it both generally and on aircraft. My training certified me to work on the UH-60 Blackhawk and CH-47 Chinook helicopters.
-      <img src="/images/cv/ait.jpg" alt="Advanced Individual Training" class="w-full mt-3 rounded-xl" />
-    </CVTimeLineElement>
-    <CVTimeLineElement
-      date="Sep 2017 - Nov 2017"
-      title="Basic Combat Training"
-      org="Army National Guard"
-      location="Fort Jackson, SC"
-      reversed={true}
-    >
-      I spent 10 weeks learning basic infantry skills and tactics as well as army history and the army lifestyle. This was a fairly grueling process, but I learned a lot about discipline, teamwork, leadership, and just how much I'm physically and mentally capable of.
-      <img src="/images/cv/bct.jpg" alt="Basic Combat Training" class="w-full mt-3 rounded-xl" />
-    </CVTimeLineElement>
-    <CVTimeLineElement
-      date="Sep 2013 - May 2017"
-      title="High School"
-      org="Woodbury High School"
-      location="Woodbury, MN"
-      end={true}
-    >
-      I graduated from Woodbury High School in 2017. I was a member of the FRC robotics team (Team 3206) where I mainly focused on team synergy as a lead robot operator, but spent a lot of time on the planning and design side of things as well.
-      <img src="/images/cv/frc1.jpg" alt="FRC 2017" class="w-full mt-3 rounded-xl" />
-      <img src="/images/cv/frc2.jpg" alt="FRC 2017" class="w-full mt-3 rounded-xl" />
-    </CVTimeLineElement>
+  <div class="timeline timeline-vertical hidden md:block mb-10">
+    <CVEvents />
+  </div>
+  <div class="timeline timeline-vertical timeline-compact block md:hidden mb-10">
+    <CVEvents />
   </div>
 
 </BaseLayout>

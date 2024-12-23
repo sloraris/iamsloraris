@@ -1,15 +1,15 @@
-/* Small/Normal Card Hover */
-.card:hover {
-    --pulse-color: oklch(var(--a));
-    animation: breathe 4s ease infinite;
-}
-
-/* Horizontal Card Hover */
+/* Small/Normal Cards */
+.card:hover,
 .horizontal-card:hover {
-    --pulse-color: oklch(var(--p));
-    animation: breathe 4s ease infinite;
+    background-color: oklch(var(--n));
+    color: oklch(var(--nc));
 }
 
+
+.pulse:hover {
+    --pulse-color: oklch(var(--bc));
+    animation: breathe 3.5s ease infinite;
+}
 
 @keyframes breathe {
     0%, 100% {

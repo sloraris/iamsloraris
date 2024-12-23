@@ -1,14 +1,46 @@
 /* Import Custom CSS */
-@import "./gradient.css";
 @import "./cards.css";
+@import "./gradient.css";
 @import "./hero.css";
+@import "./tabs.css";
 .time-line-container>div:last-child .education__time>.education__line {
     display: none;
 }
 
-/* Fonts */
+/*------------------- Fonts -------------------*/
+/* Headers/Links/Buttons */
 h1, h2, h3, h4, h5, h6, a {
     font-family: 'Exo 2', sans-serif;
+}
+
+/* Body Text */
+p {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* Inline Code */
+p code {
+    font-family: 'Geist Mono', 'Ubuntu Mono', monospace;
+    background-color: oklch(var(--b3));
+    padding: 0.2em 0.4em;
+    border-radius: 0.3em;
+    /* font-size: 0.85em; */
+}
+
+/*------------------- Headings -------------------*/
+h1 {
+    margin: 1rem 0;
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 2.5rem;
+}
+
+h2 {
+    margin: 0.5rem 0;
+}
+
+.mockup-window {
+    border-color: oklch(var(--s));
 }
 
 /* Index Page Button Hover */

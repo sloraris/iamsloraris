@@ -1,0 +1,8 @@
+/* Set the border color of the tabs to the tab background color */
+.tabs-lifted .tab {
+    --tab-border-color: var(--tab-bg);
+}
+
+.tabs-lifted .tab-content {
+    padding: 0 1rem 1rem 1rem;
+}
