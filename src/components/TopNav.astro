@@ -11,7 +11,7 @@ const { topNavActiveItemID } = Astro.props;
         <div class="navbar-start gap-2">
             <MobileMenu topNavActiveItemID={topNavActiveItemID} />
             <!-- Logo (on large screens) -->
-            <a href="/" class="self-center hidden lg:flex">
+            <a href="/" class="self-center hidden lg:flex" data-astro-reload>
                 <img src="/logos-dark/[sloraris]-dark-mode.svg" alt="sloraris.dev" class="h-10">
             </a>
         </div>
@@ -20,7 +20,7 @@ const { topNavActiveItemID } = Astro.props;
         <div class="navbar-center hidden lg:flex">
             <BaseTopNavMenu topNavActiveItemID={topNavActiveItemID} />
         </div>
-        <a href="/" class="btn btn-ghost self-center lg:hidden">
+        <a href="/" class="btn btn-ghost self-center lg:hidden" data-astro-reload>
             <img src="/logos-dark/[sloraris]-dark-mode.svg" alt="sloraris.dev" class="h-10">
         </a>
 

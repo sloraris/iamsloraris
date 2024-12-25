@@ -32,7 +32,7 @@ const activeClass = "bg-accent"; // For primary color replace with `active` clas
         </svg>
     </summary>
     <!-- Mobile menu dropdown -->
-    <ul tabindex="0" class="menu mobile-nav-menu mt-4 z-[1] shadow bg-base-200 border border-1 border-base-300 rounded-box w-[calc(100vw-2rem)] -left-2.5 absolute text-center mx-auto gap-y-2 p-2">
+    <ul tabindex="0" class="menu mobile-nav-menu mt-4 z-[1] shadow bg-base-200 border border-1 border-base-300 rounded-box w-[calc(100vw-2rem)] -left-2.5 absolute text-center mx-auto gap-y-2 p-2 lg:hidden">
         <li><a class={`text-base justify-center ${topNavActiveItemID === "home" ? "active-nav-item" : "bg-base-300 slo-bg-animated"}`} id="home-mobile" href="/">Home</a></li>
         <li><a class={`text-base justify-center ${topNavActiveItemID === "projects" ? "active-nav-item" : "bg-base-300 slo-bg-animated"}`} id="projects-mobile" href="/projects">Projects</a></li>
         <li><a class={`text-base justify-center ${topNavActiveItemID === "about" ? "active-nav-item" : "bg-base-300 slo-bg-animated"}`} id="about-mobile" href="/about">About</a></li>
