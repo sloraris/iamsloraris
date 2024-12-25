@@ -3,6 +3,9 @@
 .horizontal-card:hover {
     background-color: oklch(var(--n));
     color: oklch(var(--nc));
+    transition: ease-in-out 0.2s;
+    scale: 1.01;
+    box-shadow: 0 0 15px 0 oklch(var(--s));
 }
 
 
