@@ -1,0 +1,15 @@
+---
+const { topNavActiveItemID } = Astro.props;
+const activeClass = "bg-accent"; // For primary color replace with `active` class
+---
+
+<ul class="menu menu-horizontal gap-3 grow shrink menu-md overflow-y-auto" id="top-nav-menu">
+    <li><a class={`text-base ${topNavActiveItemID === "home" ? "active-nav-item" : "slo-bg-animated"}`} id="home" href="/">Home</a></li>
+    <li><a class={`text-base ${topNavActiveItemID === "projects" ? "active-nav-item" : "slo-bg-animated"}`} id="projects" href="/projects">Projects</a></li>
+    <li><a class={`text-base ${topNavActiveItemID === "about" ? "active-nav-item" : "slo-bg-animated"}`} id="about" href="/about">About</a></li>
+</ul>
+
+<script class="hidden" define:vars={{ topNavActiveItemID: topNavActiveItemID, activeClass: activeClass }}>
+const activeItemElem = document.getElementById(topNavActiveItemID);
+activeItemElem && activeItemElem.classList.add(activeClass);
+</script>

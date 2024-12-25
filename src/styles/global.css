@@ -3,6 +3,7 @@
 @import "./gradient.css";
 @import "./hero.css";
 @import "./tabs.css";
+
 .time-line-container>div:last-child .education__time>.education__line {
     display: none;
 }
@@ -39,6 +40,12 @@ h2 {
     margin: 0.5rem 0;
 }
 
+/* Links */
+.hyperlink {
+    color: oklch(var(--a));
+    text-decoration: underline;
+}
+
 .mockup-window {
     border-color: oklch(var(--s));
 }
@@ -46,4 +53,30 @@ h2 {
 /* Index Page Button Hover */
 .index-buttons a:hover {
     scale: 102%;
+}
+
+/* Nav Menu */
+.active-nav-item {
+    pointer-events: none;
+}
+
+/* Mobile Menu */
+.mobile-nav-menu {
+    transform-origin: top;
+    animation: closeMenu 1s ease-in-out forwards;
+}
+
+details[open] .mobile-nav-menu {
+    animation: openMenu 0.2s ease-in-out forwards;
+}
+
+@keyframes openMenu {
+    from {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+    to {
+        transform: scaleY(1);
+        opacity: 1;
+    }
 }

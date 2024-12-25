@@ -1,0 +1,46 @@
+---
+const { topNavActiveItemID } = Astro.props;
+const activeClass = "bg-accent"; // For primary color replace with `active` class
+---
+
+<details class="dropdown" id="mobile-menu">
+    <summary tabindex="0" class="btn btn-square btn-ghost lg:hidden">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="inline-block h-7 w-7 stroke-current"
+            id="hamburger-icon">
+            <path
+                class="transition-transform origin-center duration-200"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16"></path>
+            <path
+                class="transition-opacity duration-200"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 12h16"></path>
+            <path
+                class="transition-transform origin-center duration-200"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 18h16"></path>
+        </svg>
+    </summary>
+    <!-- Mobile menu dropdown -->
+    <ul tabindex="0" class="menu mobile-nav-menu mt-4 z-[1] shadow bg-base-200 border border-1 border-base-300 rounded-box w-[calc(100vw-2rem)] -left-2.5 absolute text-center mx-auto gap-y-2 p-2">
+        <li><a class={`text-base justify-center ${topNavActiveItemID === "home" ? "active-nav-item" : "bg-base-300 slo-bg-animated"}`} id="home-mobile" href="/">Home</a></li>
+        <li><a class={`text-base justify-center ${topNavActiveItemID === "projects" ? "active-nav-item" : "bg-base-300 slo-bg-animated"}`} id="projects-mobile" href="/projects">Projects</a></li>
+        <li><a class={`text-base justify-center ${topNavActiveItemID === "about" ? "active-nav-item" : "bg-base-300 slo-bg-animated"}`} id="about-mobile" href="/about">About</a></li>
+    </ul>
+</details>
+
+<script src="../lib/mobileMenu.js"></script>
+<script class="hidden" define:vars={{ topNavActiveItemID: topNavActiveItemID, activeClass: activeClass }}>
+const activeItemElem = document.getElementById(`${topNavActiveItemID}-mobile`);
+activeItemElem && activeItemElem.classList.add(activeClass);
+</script>

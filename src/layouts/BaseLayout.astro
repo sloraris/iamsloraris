@@ -1,9 +1,7 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import SideBar from "../components/SideBar.astro";
-import TopNav from "../components/NavBar.astro";
+import TopNav from "../components/TopNav.astro";
 import { ViewTransitions } from "astro:transitions";
 
 import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../config";
@@ -12,8 +10,7 @@ const {
   image,
   title = SITE_TITLE,
   description = SITE_DESCRIPTION,
-  includeSidebar = true,
-  sideBarActiveItemID,
+  topNavActiveItemID,
   ogType,
 } = Astro.props;
 ---
@@ -46,30 +43,14 @@ const {
   </head>
 
   <body>
-    <div class="bg-base-300 min-h-screen">
-      <NavBar />
+    <div class="flex flex-col bg-base-300 min-w-[350px] max-w-[100vw]">
+      <TopNav topNavActiveItemID={topNavActiveItemID} />
       <div class="md:flex md:justify-center">
-        <main class="p-6 pt-10 lg:max-w-[1050px] max-w-[100vw]">
+        <main class="p-6 pt-10 lg:max-w-[1050px]">
           <slot />
         </main>
       </div>
       <Footer />
     </div>
   </body>
-
-  <!-- <body>
-    <div class="bg-base-300 drawer lg:drawer-open">
-      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content bg-base-300">
-        <Header title={SITE_TITLE} />
-        <div class="md:flex md:justify-center">
-          <main class="p-6 pt-10 lg:max-w-[1050px] min-w-[350px] max-w-[100vw]">
-            <slot />
-          </main>
-        </div>
-        <Footer />
-      </div>
-      {includeSidebar && <SideBar sideBarActiveItemID={sideBarActiveItemID} />}
-    </div>
-  </body> -->
 </html>
