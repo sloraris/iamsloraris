@@ -1,9 +1,9 @@
 /* Animated Gradient Background */
-hr .slo-hr {
+hr.slo-hr {
     @apply my-10 border-0 h-2 rounded-full slo-bg-animated-static;
 }
 
-.slo-static-hr {
+hr.slo-static-hr {
     height: 2px;
     @apply my-2 slo-bg-gradient rounded-full;
 }
