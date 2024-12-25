@@ -23,29 +23,35 @@ const projectPosts = filterPostsByTag(posts, "ongoing").slice(0, 3);
 const lastPosts = filterPostsByTag(posts, "ongoing", true).slice(0, 3);
 ---
 
-<BaseLayout img="/images/sloraris-banner.jpg" sideBarActiveItemID="home">
-  <div class="hero light-ring flex flex-col justify-center rounded-xl pb-8 relative overflow-hidden">
-    <div class="absolute inset-0 z-0">
-      <img src="/hero/cosmic.jpg" alt="Background" class="w-full h-full object-cover filter blur-sm" />
-      <div class="absolute inset-0 bg-black opacity-50"></div>
-    </div>
-    <div class="hero-content text-center relative z-10">
-      <div class="max-w-lg">
-        <h1 class="text-5xl font-bold">Hello there</h1>
-        <h2 class="text-3xl font-bold">I'm <span class="text-accent">Parker Owings</span></h2>
-        <h3 class="text-xl">aka <span class="text-primary">sloraris</span></h3>
-        <p class="">
-          This site is a collection of my self-taught skills, tech experiments, and experiences.
-        </p>
+<BaseLayout img="/images/sloraris-banner.jpg" topNavActiveItemID="home">
+  <div class="mockup-window border bg-base-200">
+    <div class="hero flex flex-col justify-center rounded-xl relative overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img src="/hero/cosmic.jpg" alt="Cosmic background" class="w-full h-full object-cover filter blur-sm" />
+        <div class="absolute inset-0 bg-black opacity-50"></div>
       </div>
-    </div>
-    <div class="index-buttons flex flex-row flex-wrap justify-center gap-4 relative z-10">
-      <a href="/projects" class="btn btn-accent btn-wide">
-        View Projects
-      </a>
-      <a href="/about" class="btn btn-outline btn-primary btn-wide">
-        About Me
-      </a>
+      <div class="hero-content text-center">
+        <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-4">
+          <div class="avatar col-span-1 w-full min-w-[150px] max-w-[300px] mx-auto">
+                <img src="/logos-dark/slo-square-dark-mode.svg" />
+          </div>
+          <div class="flex flex-col items-center justify-center gap-y-4 col-span-1 lg:col-span-2">
+            <h1 class="text-5xl font-bold">Hello there</h1>
+            <p class="max-w-xl">
+              This site is a collection of my self-taught skills, tech experiments, and experiences.
+              Feel free to explore my projects or learn more about me.
+            </p>
+            <div class="index-buttons flex flex-row flex-wrap justify-center gap-4">
+              <a href="/projects" class="btn btn-accent btn-wide">
+                View Projects
+              </a>
+              <a href="/about" class="btn btn-outline btn-primary btn-wide">
+                About Me
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

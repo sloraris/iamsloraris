@@ -1,0 +1,36 @@
+---
+import BaseTopNavMenu from "./BaseTopNavMenu.astro";
+import MobileMenu from "./MobileMenu.astro";
+import SocialIcons from "./SocialIcons.astro";
+const { topNavActiveItemID } = Astro.props;
+---
+
+<div class="w-full flex justify-center sticky top-0 z-30">
+    <div class="navbar bg-base-200 rounded-xl mx-4 mt-2">
+        <!-- Left TopNav / Mobile menu button and logo -->
+        <div class="navbar-start gap-2">
+            <MobileMenu topNavActiveItemID={topNavActiveItemID} />
+            <!-- Logo (on large screens) -->
+            <a href="/" class="self-center hidden lg:flex">
+                <img src="/logos-dark/[sloraris]-dark-mode.svg" alt="sloraris.dev" class="h-10">
+            </a>
+        </div>
+
+        <!-- Center TopNav / Menu on large screens, Logo (on small screens) -->
+        <div class="navbar-center hidden lg:flex">
+            <BaseTopNavMenu topNavActiveItemID={topNavActiveItemID} />
+        </div>
+        <a href="/" class="btn btn-ghost self-center lg:hidden">
+            <img src="/logos-dark/[sloraris]-dark-mode.svg" alt="sloraris.dev" class="h-10">
+        </a>
+
+        <!-- Right TopNav / Social icons -->
+        <div class="navbar-end">
+            <div class="hidden sm:flex sm:flex-row gap-2 px-4">
+                <div class="social-icons items-center flex gap-2">
+                    <SocialIcons />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

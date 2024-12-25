@@ -6,7 +6,7 @@ import SkillScale from "../components/skill/SkillScale.astro";
 import { skills } from "../components/skill/skills.ts";
 ---
 
-<BaseLayout title="About" sideBarActiveItemID="about">
+<BaseLayout title="About" topNavActiveItemID="about">
 
     <div class="mockup-window border mb-10 bg-base-300">
         <div class="bg-base-200 p-6">
@@ -17,11 +17,11 @@ import { skills } from "../components/skill/skills.ts";
                         <img src="/images/parker-owings.jpeg" />
                     </div>
                 </div>
-                <div role="tablist" class="col-span-2 tabs tabs-lifted tabs-lg h-full">
+                <div role="tablist" class="col-span-1 md:col-span-2 tabs tabs-lifted tabs-lg h-full">
                     <!-- Bio Tab -->
                     <input type="radio" name="About Me" role="tab" class="tab" aria-label="Bio" checked />
                     <div role="tabpanel" class="tab-content bg-base-100 rounded-box min-h-[300px]">
-                        <h2 class="text-3xl"><span class="text-accent font-bold">Parker Owings</span> aka <span class="text-primary font-bold">sloraris</span>
+                        <h2 class="text-3xl"><span class="text-primary font-bold">Parker Owings</span> aka <span class="text-primary font-bold">sloraris</span>
                         </h2>
                         <p>
                             I would describe myself as a man of many interests&mdash;some interesting, some not. I ride a onewheel, I enjoy Ultimate Frisbee, I play with Docker and Linux in my spare time, I find cable-management relaxing, and I'm a casual enjoyer of the occasional video game. I have a passion for networking, automation, cybersecurity, and I'm a firm believer in the philosophy that you should always be learning (mostly by doing).
@@ -32,8 +32,8 @@ import { skills } from "../components/skill/skills.ts";
                     <input type="radio" name="About Me" role="tab" class="tab" aria-label="Acknowledgments" />
                     <div role="tabpanel" class="tab-content bg-base-100 rounded-box min-h-[300px]">
                         <h2 class="text-3xl font-bold text-primary">Standing on the Shoulders of Giants</h2>
-                        <p>
-                            There's simply no way around it: I would not be where I am today without the help of some incredible people.
+                        <p class="font-bold italic mb-1">
+                            There's simply no way around it: I would not be where I am today without the help of so many incredible people.
                         </p>
                         <ul class="list-disc list-inside">
                             <li>
@@ -42,9 +42,45 @@ import { skills } from "../components/skill/skills.ts";
                             </li>
                             <li>
                                 <strong>My Professors</strong>
-                                &ndash; For teaching me how to apply my skills towards real-world problems
+                                &ndash; For teaching me how to use my skills on real-world problems
+                            </li>
+                            <li>
+                                <strong>My Mentors</strong>
+                                &ndash; For pointing me towards new opportunities
+                            </li>
+                            <li>
+                                <strong>Online Communities (YouTube, Reddit, Discord, etc.)</strong>
+                                &ndash; For lowering the barrier to entry on many, many topics
                             </li>
                         </ul>
+                    </div>
+
+                    <!-- Contact Tab -->
+                    <input type="radio" name="About Me" role="tab" class="tab" aria-label="Contact" />
+                    <div role="tabpanel" class="tab-content bg-base-100 rounded-box gap-2 min-h-[300px]">
+                        <h2 class="text-3xl font-bold text-primary">Contact Me</h2>
+                        <p class="font-bold italic mb-2">
+                            Feel free to reach out to me via email or my other platforms.
+                        </p>
+                        <div class="flex flex-col items-center gap-2">
+                            <a href="mailto:sloraris@sloraris.com" class="btn w-full btn-accent">Email</a>
+                            <a href="https://www.linkedin.com/in/parker-owings" target="_blank" class="btn w-full btn-secondary">LinkedIn</a>
+                            <a href="https://github.com/sloraris" target="_blank" class="btn w-full btn-neutral">GitHub</a>
+                        </div>
+                        <!-- <ul class="list-disc list-inside">
+                            <li>
+                                <strong>Email</strong>
+                                &ndash; sloraris [@] sloraris [.] com
+                            </li>
+                            <li>
+                                <strong>LinkedIn</strong>
+                                &ndash; <a href="https://www.linkedin.com/in/parker-owings-0000000000/" target="_blank" class="hyperlink">parker-owings</a>
+                            </li>
+                            <li>
+                                <strong>GitHub</strong>
+                                &ndash; <a href="https://github.com/sloraris" target="_blank" class="hyperlink">sloraris</a>
+                            </li>
+                        </ul> -->
                     </div>
                 </div>
             </div>
@@ -55,10 +91,10 @@ import { skills } from "../components/skill/skills.ts";
         <input type="checkbox" />
         <h2 class="collapse-title text-3xl font-bold">Skills</h2>
         <div class="collapse-content">
-          <p class="rounded-xl bg-base-100 mb-4 p-3">
+          <p class="rounded-xl bg-base-100 mb-4 p-4">
             These skills are self-rated on a scale of 0-4. A score of 0 means I've heard of it and can tell you about it but haven't spent any time with it, while a score of 4 means I use it consistently and would feel comfortable recommending it to others or teaching them how to use it.
           </p>
-          <div class="flex">
+          <div class="flex p-4">
             <SkillScale />
           </div>
           <div class="space-y-4">
@@ -75,7 +111,7 @@ import { skills } from "../components/skill/skills.ts";
         <input type="checkbox" />
         <h2 class="collapse-title text-3xl font-bold">Certifications</h2>
         <div class="collapse-content">
-          <div class="rounded-xl bg-base-100 p-3">
+          <div class="rounded-xl bg-base-100 p-4">
             <h3 class="text-2xl font-bold">Certified</h3>
             <ul class="list-disc mx-6 mb-4 grid gap-2">
               <li>
