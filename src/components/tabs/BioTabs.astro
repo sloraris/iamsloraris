@@ -73,27 +73,35 @@
 </style>
 
 <script>
-    const radioInputs = document.querySelectorAll('input[name="tabs"]');
-    const tabPanels = document.querySelectorAll('.tab-panel');
-    const tabLabels = document.querySelectorAll('.tab');
-    const slideIndicator = document.querySelector('.slide-indicator') as HTMLElement;
+    function initializeTabs() {
+        const radioInputs = document.querySelectorAll('input[name="tabs"]');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+        const tabLabels = document.querySelectorAll('.tab');
+        const slideIndicator = document.querySelector('.slide-indicator');
 
-    radioInputs.forEach((input, index) => {
-        input.addEventListener('change', () => {
-            tabPanels.forEach(panel => panel.classList.add('hidden'));
-            const activePanel = document.querySelector(`[data-tab="${input.id.replace('tab-', '')}"]`);
-            activePanel?.classList.remove('hidden');
+        radioInputs.forEach((input, index) => {
+            input.addEventListener('change', () => {
+                tabPanels.forEach(panel => panel.classList.add('hidden'));
+                const activePanel = document.querySelector(`[data-tab="${input.id.replace('tab-', '')}"]`);
+                activePanel?.classList.remove('hidden');
 
-            // Change styling for active tab
-            tabLabels.forEach(tab => tab.classList.remove('text-neutral-content'));
-            tabLabels[index].classList.add('text-neutral-content');
+                // Handle tab active state
+                tabLabels.forEach(tab => tab.classList.remove('text-neutral-content'));
+                tabLabels[index].classList.add('text-neutral-content');
 
-            // Move slide indicator
-            if (slideIndicator) {
-                const tabWidth = 100 / tabLabels.length;
-                slideIndicator.style.left = `${tabWidth * index}%`;
-                slideIndicator.style.width = `${tabWidth}%`;
-            }
+                // Move slide indicator
+                if (slideIndicator) {
+                    const tabWidth = 100 / tabLabels.length;
+                    slideIndicator.style.left = `${tabWidth * index}%`;
+                    slideIndicator.style.width = `${tabWidth}%`;
+                }
+            });
         });
-    });
+    }
+
+    // Initialize on page load
+    initializeTabs();
+
+    // Initialize after Astro page transitions
+    document.addEventListener('astro:page-load', initializeTabs);
 </script>
