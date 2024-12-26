@@ -1,0 +1,99 @@
+<div role="tablist" class="tabs grid grid-cols-3 tabs-boxed mb-4 bg-base-100 w-full relative">
+    <div class="slide-indicator tab-active"></div>
+    <label for="tab-bio" class="tab relative z-10 flex-col-1 items-center justify-center text-neutral-content">Bio</label>
+    <label for="tab-tribute" class="tab relative z-10 flex-col-1 items-center justify-center">Tribute</label>
+    <label for="tab-contact" class="tab relative z-10 flex-col-1 items-center justify-center">Contact</label>
+</div>
+
+<div class="flex flex-col bg-base-100 rounded-xl px-4 pb-4">
+    <input type="radio" id="tab-bio" name="tabs" class="hidden" checked />
+    <input type="radio" id="tab-tribute" name="tabs" class="hidden" />
+    <input type="radio" id="tab-contact" name="tabs" class="hidden" />
+
+    <div role="tabpanel" class="tab-panel" data-tab="bio">
+        <h2 class="text-3xl"><span class="text-primary font-bold">Parker Owings</span> aka <span class="text-primary font-bold">sloraris</span></h2>
+        <p>
+            I would describe myself as a man of many interests&mdash;some interesting, some not. I ride a onewheel, I enjoy Ultimate Frisbee, I play with Docker and Linux in my spare time, I find cable-management relaxing, and I'm a casual enjoyer of the occasional video game. I have a passion for networking, automation, cybersecurity, and I'm a firm believer in the philosophy that you should always be learning (mostly by doing).
+        </p>
+    </div>
+
+    <div role="tabpanel" class="tab-panel hidden" data-tab="tribute">
+        <h2 class="text-3xl font-bold text-primary">Standing on the Shoulders of Giants</h2>
+        <p class="font-bold italic mb-1">
+            There's simply no way around it: I would not be where I am today without the help of so many incredible people.
+        </p>
+        <ul class="list-disc list-inside">
+            <li>
+                <strong>My Parents</strong>
+                &ndash; For showing me that there's always another way to do something
+            </li>
+            <li>
+                <strong>My Professors</strong>
+                &ndash; For teaching me how to use my skills on real-world problems
+            </li>
+            <li>
+                <strong>My Mentors</strong>
+                &ndash; For pointing me towards new opportunities
+            </li>
+            <li>
+                <strong>Online Communities (YouTube, Reddit, Discord, etc.)</strong>
+                &ndash; For lowering the barrier to entry on many, many topics
+            </li>
+        </ul>
+    </div>
+
+    <div role="tabpanel" class="tab-panel hidden" data-tab="contact">
+        <h2 class="text-3xl font-bold text-primary">Contact Me</h2>
+            <p class="font-bold italic mb-2">
+                Feel free to reach out to me via email or my other platforms.
+            </p>
+            <div class="flex flex-col items-center gap-2">
+                <a href="mailto:sloraris@sloraris.com" class="btn w-full btn-accent">Email</a>
+                <a href="https://www.linkedin.com/in/parker-owings" target="_blank" class="btn w-full btn-secondary">LinkedIn</a>
+                <a href="https://github.com/sloraris" target="_blank" class="btn w-full btn-neutral">GitHub</a>
+            </div>
+    </div>
+</div>
+
+<style>
+    .slide-indicator {
+        position: absolute;
+        height: 100%;
+        background: oklch(var(--bc));
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 0;
+        border-radius: var(--rounded-btn, 0.5rem);
+    }
+
+    /* Set initial position for the first tab */
+    .slide-indicator {
+        width: calc(100% / 3); /* Adjust based on number of tabs */
+        left: 0;
+    }
+</style>
+
+<script>
+    const radioInputs = document.querySelectorAll('input[name="tabs"]');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    const tabLabels = document.querySelectorAll('.tab');
+    const slideIndicator = document.querySelector('.slide-indicator') as HTMLElement;
+
+    radioInputs.forEach((input, index) => {
+        input.addEventListener('change', () => {
+            tabPanels.forEach(panel => panel.classList.add('hidden'));
+            const activePanel = document.querySelector(`[data-tab="${input.id.replace('tab-', '')}"]`);
+            activePanel?.classList.remove('hidden');
+
+            // Change styling for active tab
+            tabLabels.forEach(tab => tab.classList.remove('text-neutral-content'));
+            tabLabels[index].classList.add('text-neutral-content');
+
+            // Move slide indicator
+            if (slideIndicator) {
+                const tabWidth = 100 / tabLabels.length;
+                slideIndicator.style.left = `${tabWidth * index}%`;
+                slideIndicator.style.width = `${tabWidth}%`;
+            }
+        });
+    });
+</script>
