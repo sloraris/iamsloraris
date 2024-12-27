@@ -6,7 +6,7 @@ const hasContent = !!Astro.slots.default;
 <li>
   <hr class={`${start ? '' : `${topFilled ? 'bg-primary' : 'bg-base-200'}`}`} />
   <div class={`timeline-box bg-base-200 p-0 collapse ${hasContent ? 'collapse-plus' : ''} ${reversed ? 'timeline-start' : 'timeline-end'}`}>
-    <input type="checkbox" />
+    <input aria-label="Toggle timeline item" type="checkbox" />
     <div class={`collapse-title pb-0 ${hasContent ? 'mb-2' : 'mb-4'}`}>
       <span class="font-light text-secondary text-sm">{date}</span>
       <h3 class="font-bold text-lg">{title}</h3>
