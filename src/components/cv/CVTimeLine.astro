@@ -13,7 +13,7 @@ const hasContent = !!Astro.slots.default;
       <span class="font-light text-sm"><span class="font-bold">{org}</span> &ndash; <i>{location}</i></span>
     </div>
     {hasContent && (
-      <p class="collapse-content rounded-xl bg-base-100 pt-3 text-justify">
+      <p class="collapse-content rounded-xl bg-base-100 pt-3">
         <slot />
       </p>
     )}
